@@ -48,26 +48,74 @@ Design a database for patient management, appointments, medical records, and bil
 # ER Diagram Submission - Student Name
 
 ## Scenario Chosen:
-University / Hospital (choose one)
+University
 
 ## ER Diagram:
 ![438532434-b8184a94-0773-4294-be8b-8d254aca72d5](https://github.com/user-attachments/assets/7b7325d4-c4f8-42e3-b232-f077e3af8e5f)
-
-
 ## Entities and Attributes:
-- Entity1: Attributes
-- Entity2: Attributes
-...
+UNIVERSITY
+
+    Attributes: Name, Place
+
+STUDENT
+
+    Attributes: Student ID, Name, Year
+
+COURSE
+
+    Attributes: Course Name, Course Code, Slot, Pre-requisite
+
+PROFESSOR
+
+    Attributes: Name, Professor ID, Working Experience
 
 ## Relationships and Constraints:
-- Relationship1 (Cardinality, Participation)
-- Relationship2 (Cardinality, Participation)
-...
+admission (UNIVERSITY — STUDENT)
 
-## Extension (Prerequisite / Billing):
-- Explain how you modeled prerequisites or billing.
+    Cardinality: One university can admit many students; each student is admitted to one university.
+
+    Participation: Total participation from STUDENT, partial from UNIVERSITY.
+
+enrolls (STUDENT — COURSE)
+
+    Cardinality: One student can enroll in multiple courses; each course can have many students.
+
+    Participation: Partial participation from both STUDENT and COURSE.
+
+handled (COURSE — PROFESSOR)
+
+    Cardinality: One professor can handle multiple courses; each course is handled by one professor.
+
+    Participation: Total from COURSE, partial from PROFESSOR.
+
+## Extension (Prerequisite ):
+The prerequisite attribute is added directly to the COURSE entity.
+
+This implies that each course may have a prerequisite course defined (modeled as a self-referencing attribute, i.e., prerequisite course name/code).
 
 ## Design Choices:
-Brief explanation of why you chose certain entities, relationships, and assumptions
+Entity Selection:
 
+    Chose UNIVERSITY, STUDENT, COURSE, and PROFESSOR as they represent key real-world concepts in an academic scenario.
+
+Relationship Modeling:
+
+    admission models the process of a student joining a university.
+
+    enrolls captures course registration by students.
+
+    handled shows which professor teaches which course.
+
+Attributes:
+
+    Added essential identifying and descriptive attributes like IDs and names to uniquely distinguish entities.
+
+Assumptions:
+
+    Each course has only one professor.
+
+    Each student belongs to only one university.
+
+    Prerequisites are modeled simply as text (or course code reference) within the COURSE entity.
 ## RESULT
+A complete ER model of a university system that defines students, courses, professors, and their interrelationships, including prerequisites, with proper constraints and rationale.
